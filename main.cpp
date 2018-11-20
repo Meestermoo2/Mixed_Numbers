@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+    cout << "Quick Edit" << endl;
     mixedNumber a(3,2,3), b(4.25), c;
 //    cout<<"a = "<<a<<" b = "<<b<<endl;
 //    c = a + b;
