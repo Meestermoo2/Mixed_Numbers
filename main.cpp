@@ -10,6 +10,7 @@ int main()
 
     a = 2.555555;
 
+    cout << "Hello" << endl;
     cout << "result : " << a << endl;
 
 //    a = -1;
