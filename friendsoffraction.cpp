@@ -23,14 +23,15 @@ std::istream& operator>>(std::istream& in, fraction &frac)
     }
     else//Let's assume everything else is a file (for now)
     {
+        // Negative check, this will allow us to change the possibleFraction into its negative counterpart.
         bool neg = false;
-        std::cout << (char)in.peek();
         if (in.peek() == '-')
         {
             in >> junk;
             neg = true;
         }
 
+        // Input the possiblefraction as an integer, if possible
         if(in>>frac.num)
         {
             if (in.peek() == '/')
@@ -53,13 +54,14 @@ std::istream& operator>>(std::istream& in, fraction &frac)
                 fraction a(temp);
                 frac = a;
                 frac.reduce();
+
             }
         }
-        else
+        // If possible fraction can't be put into integer, it is likely a decimal
+        else  // Example ".5"
         {
             in.clear();
-
-            if (in.peek() == '.') // Example ".5"
+            if ((in.peek() == '.'))
             {
                 double temp;
                 in >> temp;
@@ -69,7 +71,10 @@ std::istream& operator>>(std::istream& in, fraction &frac)
                 frac = a;
                 frac.reduce();
             }
+//            else
+//                throw INVALID_TYPE;
         }
+
     }
     return in;
 }

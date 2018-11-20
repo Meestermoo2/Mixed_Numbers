@@ -51,16 +51,12 @@ bool driverProgram()
             case DivByZero :
                 cout << "Division by zero" << endl;
                 break;
-            case DoubleNorD :
-                cout << "double was entered for numerator or denom" << endl;
-                break;
         }
     }
     catch(...)
     {
         cout << "An unknown error occurred" << endl;
     }
-
 
     return 1;
 }
