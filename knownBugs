@@ -3,3 +3,10 @@
 - Cannot take cin of -4/5.0
 - Needs exception for any cin of zero (e.g 5/0)
 - 0/0 causes a crash
+- Cannot take cin of -2/.2
+- Cannot insert into same fraction twice (?)
+
+
+Edge cases:
+double negatives? (1- -1)
+decimal over decimal (0.5/0.5)

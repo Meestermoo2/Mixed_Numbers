@@ -7,7 +7,8 @@ SOURCES += \
         main.cpp \
     fraction.cpp \
     friendsoffraction.cpp \
-    mixednumber.cpp
+    mixednumber.cpp \
+    driverprogram.cpp
 
 HEADERS += \
     fraction.h \

@@ -18,10 +18,19 @@ std::istream& operator>>(std::istream& in, fraction &frac)
         if(in>>possibleFraction)
         {
             ss<<possibleFraction;
-            ss>>frac;        }
+            ss>>frac;
+        }
     }
     else//Let's assume everything else is a file (for now)
     {
+        bool neg = false;
+        std::cout << (char)in.peek();
+        if (in.peek() == '-')
+        {
+            in >> junk;
+            neg = true;
+        }
+
         if(in>>frac.num)
         {
             if (in.peek() == '/')
@@ -43,10 +52,13 @@ std::istream& operator>>(std::istream& in, fraction &frac)
         else
         {
             in.clear();
+
             if (in.peek() == '.') // Example ".5"
             {
                 double temp;
                 in >> temp;
+                if (neg)
+                    temp *= -1;
                 fraction a(temp);
                 frac = a;
                 frac.reduce();

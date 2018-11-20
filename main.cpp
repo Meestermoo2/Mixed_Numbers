@@ -1,25 +1,13 @@
 #include <iostream>
 #include "mixednumber.h"
+#include "driverprogram.cpp"
 
 using namespace std;
 
 int main()
 {
 
-    while (1) {
-        fraction a;
-
-        cin >> a;
-
-        cout << "result : " << a << endl << endl;
-    }
-
-
-
-
-//    a = -1;
-//    cout << "result : " << a << endl;
-
+    driverProgram();
 
     return 0;
 }
