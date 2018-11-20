@@ -6,11 +6,16 @@ using namespace std;
 int main()
 {
 
-    fraction a;
+    while (1) {
+        fraction a;
 
-    a = 2.555555;
+        cin >> a;
 
-    cout << "result : " << a << endl;
+        cout << "result : " << a << endl << endl;
+    }
+
+
+
 
 //    a = -1;
 //    cout << "result : " << a << endl;

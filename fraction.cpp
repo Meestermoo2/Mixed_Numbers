@@ -34,7 +34,6 @@ fraction::fraction(const double &other)
 
     getline(ss,fractionPart);
     // This takes in the rest of the double following the decimal
-  
 
     int numDigits = fractionPart.size();
     // This is to keep track of fraction's size, used for iterating through the fractionPart string in the makeDenom method
@@ -45,7 +44,6 @@ fraction::fraction(const double &other)
     denom = makeDenom(numDigits, allDecimalsTheSame(fractionPart));
 
     // This will convert repeating decimals and non repeating decimals into an denominator (as an int).
-    std::cout << fractionPart;
     num = (denom * abs(std::stoi(wholePart))) + abs(std::stoi(fractionPart));
     // 1.5 -> 1 whole part
     //      -> 5 fraction part
