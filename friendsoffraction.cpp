@@ -35,7 +35,11 @@ std::istream& operator>>(std::istream& in, fraction &frac)
         {
             if (in.peek() == '/')
             {
+                if (neg)
+                    frac.num *= -1;
                 in >> junk >> frac.denom;
+                if(frac.denom == 0)
+                    throw DivByZero;
                 frac.reduce();
             }
 
@@ -44,6 +48,8 @@ std::istream& operator>>(std::istream& in, fraction &frac)
                 double temp;
                 in >> temp;
                 temp = temp + frac.num;
+                if (neg)
+                    temp *= -1;
                 fraction a(temp);
                 frac = a;
                 frac.reduce();
