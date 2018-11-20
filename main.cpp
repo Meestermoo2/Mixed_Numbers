@@ -8,7 +8,6 @@ int main()
 
     fraction a;
 
-
     a = 2.555555;
 
     cout << "result : " << a << endl;
