@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 
-    mixedNumber a;
+    fraction a;
 
     a = 0.5;
     cout << "result : " << a << endl;

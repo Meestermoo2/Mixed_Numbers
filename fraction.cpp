@@ -23,23 +23,37 @@ fraction::fraction(const fraction &frac)
 }
 
 fraction::fraction(const double &other)
-{
+{   //Turns double into a string, which is divided into two parts (whole.fraction)
     std::string wholePart, fractionPart;
     std::stringstream ss;
+
     ss<<other;
+    // This operation turns the double into a string
     getline(ss,wholePart,'.');
+    // This takes the first 'part' of the string delimited by the period
     getline(ss,fractionPart);
+    // This takes in the rest of the double following the decimal
     int numDigits = fractionPart.size();
+    // This is to keep track of
+
     denom = makeDenom(numDigits, allDecimalsTheSame(fractionPart));
+    // This will convert
+
     num = denom * abs(std::stoi(wholePart)) + abs(std::stoi(fractionPart));
+    //
+
     reduce();
+
+
     num *= std::stoi(wholePart)/abs(std::stoi(wholePart));
+    // Known issue, divison by zero. Need to be caught by exceptions.
 }
 
 bool fraction::allDecimalsTheSame(const std::string &fracPart)
 {
-    if(fracPart.size()<3)
-            return false;//credit to yuner
+    if(fracPart.size() == 1) // This will account for single digit parts (e.g .1 is not repeating)
+            return false;
+
     bool yes = true;
     for(int i = 1; yes && i < fracPart.size(); ++i)
         yes = (fracPart[0] == fracPart[i]);
@@ -51,7 +65,13 @@ int fraction::makeDenom(int digits, bool same)
     std::string result("1");
     for(int i = 0; i < digits; ++i)
         result += "0";
-    return std::stoi(result) - (int)same * 1;
+    return (std::stoi(result) - static_cast<int>(same));
+    // If we have a repeating decimal, we typically divide by 9 to get the denominator.
+    // This logic allows us to subtract from the power of 10 if this is the case.
+    // e.g. (.222..) can be converted to 2/9
+    // If we have a non repeating decimal, we simply divide by a power of 10 to get the denominator.
+    // e.g. (.30) can be converted to 3/10. We get a power of 10 (depending on number of digits in decimal)
+    // e.g. (.3213) can be converted to 3213/10000
 }
 
 fraction& fraction::operator=(const fraction &frac)
