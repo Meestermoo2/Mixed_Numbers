@@ -32,6 +32,11 @@ fraction::fraction(const double &other)
     getline(ss,wholePart,'.');
     // This takes the first 'part' of the string delimited by the period
     getline(ss,fractionPart);
+
+    if(fractionPart == "")
+            fractionPart += '0';
+
+
     // This takes in the rest of the double following the decimal
     int numDigits = fractionPart.size();
     // This is to keep track of
@@ -44,15 +49,16 @@ fraction::fraction(const double &other)
 
     reduce();
 
+    if (wholePart[0] == '-')
+            num *= -1;
 
-    num *= std::stoi(wholePart)/abs(std::stoi(wholePart));
     // Known issue, divison by zero. Need to be caught by exceptions.
 }
 
 bool fraction::allDecimalsTheSame(const std::string &fracPart)
 {
     if(fracPart.size() == 1) // This will account for single digit parts (e.g .1 is not repeating)
-            return false;
+                return false;
 
     bool yes = true;
     for(int i = 1; yes && i < fracPart.size(); ++i)
