@@ -12,3 +12,6 @@ SOURCES += \
 HEADERS += \
     fraction.h \
     mixednumber.h
+
+DISTFILES += \
+    knownBugs

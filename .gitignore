@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+*.autosave
+Mixed_Numbers.pro.user.*
