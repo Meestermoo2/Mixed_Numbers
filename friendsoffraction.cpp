@@ -1,5 +1,7 @@
 #include "fraction.h"
 
+enum errors{INVALID_TYPE, DIV_BY_ZERO};
+
 std::ostream& operator<<(std::ostream& out, const fraction &frac)
 {
     out<<frac.num;
@@ -23,19 +25,24 @@ std::istream& operator>>(std::istream& in, fraction &frac)
     }
     else//Let's assume everything else is a file (for now)
     {
+        // Negative check, this will allow us to change the possibleFraction into its negative counterpart.
         bool neg = false;
-        std::cout << (char)in.peek();
         if (in.peek() == '-')
         {
             in >> junk;
             neg = true;
         }
 
+        // Input the possiblefraction as an integer, if possible
         if(in>>frac.num)
         {
             if (in.peek() == '/')
             {
+                if (neg)
+                    frac.num *= -1;
                 in >> junk >> frac.denom;
+                if(frac.denom == 0)
+                    throw DIV_BY_ZERO;
                 frac.reduce();
             }
 
@@ -44,16 +51,19 @@ std::istream& operator>>(std::istream& in, fraction &frac)
                 double temp;
                 in >> temp;
                 temp = temp + frac.num;
+                if (neg)
+                    temp *= -1;
                 fraction a(temp);
                 frac = a;
                 frac.reduce();
+
             }
         }
-        else
+        // If possible fraction can't be put into integer, it is likely a decimal
+        else  // Example ".5"
         {
             in.clear();
-
-            if (in.peek() == '.') // Example ".5"
+            if ((in.peek() == '.'))
             {
                 double temp;
                 in >> temp;
@@ -63,7 +73,10 @@ std::istream& operator>>(std::istream& in, fraction &frac)
                 frac = a;
                 frac.reduce();
             }
+            else
+                throw INVALID_TYPE;
         }
+
     }
     return in;
 }

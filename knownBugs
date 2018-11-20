@@ -1,10 +1,7 @@
-- Cannot do numbers between -1 and 1 (e.g. 0.5, -0.5)
-- Cannot take cin of -.5. Outputs as 1/2.
 - Cannot take cin of -4/5.0
+- Cannot take cin of -2/.2
 - Needs exception for any cin of zero (e.g 5/0)
 - 0/0 causes a crash
-- Cannot take cin of -2/.2
-- Cannot insert into same fraction twice (?)
 
 
 Edge cases:
