@@ -8,40 +8,18 @@
 class fraction
 {
     public:
-        /*
-         * The default constructor makes an "empty"
-         * object, and is required ALL the time!
-         */
+
         fraction();
-        /*
-         * Two item constructor that will pass a numerator
-         * and a denominator to the new fraction
-         */
+
         fraction(int n, int d = 1);
-        /*
-         * How do you destroy a fraction?
-         * By the destructor!
-         */
+
         ~fraction();
-        /*
-         * The copy constructor is fired whenever
-         * 1. You pass by value
-         * 2. You use a return statement that
-         *    does not got back to a reference
-         */
+
         fraction(const fraction &fraction);
-        /*
-         * The assignment operator needs to be
-         * returned by reference so that you can
-         * "chain" operators.
-         * e.g.
-         * x = y = z;
-         */
-        //Other constructors to "help" make my life easier.
+
         fraction(const double &other);
 
         fraction& operator=(const fraction &fraction);
-        //Additional assignment operators
         fraction& operator+=(const fraction &fraction);
         fraction& operator-=(const fraction &fraction);
         fraction& operator*=(const fraction &fraction);
@@ -53,15 +31,6 @@ class fraction
         void display();
         void getInput();
 
-        /*
-         * Friends of a class.
-         * Friends are used when you are interacting
-         * between two or more other objects; whether
-         * it be of the class type or something else.
-         *
-         * Friends are NOT members of the class, but have
-         * access to private member data and functions.
-         */
         friend
         std::ostream& operator<<(std::ostream& out, const fraction &frac);
 
@@ -76,6 +45,9 @@ class fraction
 
         friend
         fraction operator*(const fraction &x,const fraction &y);
+
+        friend
+        fraction operator^(const fraction &x,const fraction &y);
 
         friend
         fraction operator/(const fraction &x,const fraction &y);

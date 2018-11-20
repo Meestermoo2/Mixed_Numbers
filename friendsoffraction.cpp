@@ -92,6 +92,12 @@ fraction operator/(const fraction &x,const fraction &y)
     return result;
 }
 
+fraction operator^(const fraction &x,const fraction &y)
+{
+    double temp1 = pow(pow(x.num, y.num),1./y.denom),
+            temp2 = pow(pow(x.denom, y.num),1./y.denom);
+    return temp1/temp2;
+}
 
 bool operator==(const fraction &x,const fraction &y)
 {
