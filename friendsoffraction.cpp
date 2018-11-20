@@ -13,29 +13,45 @@ std::istream& operator>>(std::istream& in, fraction &frac)
     char junk;
     std::stringstream ss;
     std::string possibleFraction;
-    std::cout<<"Starting operator>>"<<std::endl;
     if(&in == &std::cin) //This means that the program is reading from the console
     {
         if(in>>possibleFraction)
         {
-            std::cout<<"You entered: "<<possibleFraction<<std::endl;
             ss<<possibleFraction;
-            std::cout<<"the first thing in the stringstream is: "<<(char)ss.peek()<<std::endl;
-            ss>>frac;
-            std::cout<<"You got: "<<frac<<std::endl;
-        }
+            ss>>frac;        }
     }
     else//Let's assume everything else is a file (for now)
     {
-        std::cout<<"Reading from a stream other than cin"<<std::endl;
         if(in>>frac.num)
         {
-            if(in.peek() == '/')
-               in>>junk>>frac.denom;
-            frac.reduce();
+            if (in.peek() == '/')
+            {
+                in >> junk >> frac.denom;
+                frac.reduce();
+            }
+
+            if (in.peek() == '.') // Example "0.5"
+            {
+                double temp;
+                in >> temp;
+                temp = temp + frac.num;
+                fraction a(temp);
+                frac = a;
+                frac.reduce();
+            }
         }
         else
-            std::cout<<"Hit End of File"<<std::endl;
+        {
+            in.clear();
+            if (in.peek() == '.') // Example ".5"
+            {
+                double temp;
+                in >> temp;
+                fraction a(temp);
+                frac = a;
+                frac.reduce();
+            }
+        }
     }
     return in;
 }

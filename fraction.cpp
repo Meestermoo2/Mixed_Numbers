@@ -31,16 +31,19 @@ fraction::fraction(const double &other)
     // This operation turns the double into a string
     getline(ss, wholePart,'.');
     // This takes the first 'part' of the string delimited by the period
-    getline(ss, fractionPart);
+
+    getline(ss,fractionPart);
     // This takes in the rest of the double following the decimal
+  
 
     int numDigits = fractionPart.size();
     // This is to keep track of fraction's size, used for iterating through the fractionPart string in the makeDenom method
-    if(!fractionPart.size())
-        fractionPart += '0';
+    if(fractionPart == "")
+            fractionPart += '0';
     // This is required because when a decimal such as "3.0" is inserted into string stream, it evaluates it says "3" instead, causing an empty string.
 
     denom = makeDenom(numDigits, allDecimalsTheSame(fractionPart));
+
     // This will convert repeating decimals and non repeating decimals into an denominator (as an int).
     std::cout << fractionPart;
     num = (denom * abs(std::stoi(wholePart))) + abs(std::stoi(fractionPart));
@@ -54,12 +57,13 @@ fraction::fraction(const double &other)
 
     if (wholePart[0] == '-') // Negates the fraction, if applicable
         num *= -1;
+
 }
 
 bool fraction::allDecimalsTheSame(const std::string &fracPart)
 {
     if(fracPart.size() == 1) // This will account for single digit parts (e.g .1 is not repeating)
-            return false;
+                return false;
 
     bool yes = true;
     for(int i = 1; yes && i < fracPart.size(); ++i)
