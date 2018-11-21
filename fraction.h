@@ -5,7 +5,7 @@
 #include <cmath>
 #include <sstream>
 
-enum fraction_ERRORS {DivByZero};
+enum fraction_ERRORS {DivByZero, Invalid_Type};
 
 class fraction
 {
