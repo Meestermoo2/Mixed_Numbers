@@ -132,6 +132,8 @@ void fraction::setValue(int n, int d) //mutator function
 {
     num = n;
     denom = d;
+    if (!denom)
+        throw DivByZero;
     reduce();
 }
 

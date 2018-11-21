@@ -2,7 +2,8 @@
 - Cannot take cin of -2/.2
 - Needs exception for any cin of zero (e.g 5/0)
 - 0/0 causes a crash
-
+- initializing mixed number with negatives causes issues.
+- constructing a mixed number from a fraction;;
 
 Edge cases:
 double negatives? (1- -1)

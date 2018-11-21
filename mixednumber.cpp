@@ -66,6 +66,8 @@ void mixedNumber::getValues(int &w, int &n, int &d)
 
 void mixedNumber::setValues(int w, int n, int d)
 {
+    if (w < 0)
+        d *= -1;
     fraction::setValue(w*d + n, d);
 }
 
@@ -99,8 +101,15 @@ void mixedNumber::nukeEveryone()
      int whole;
      fraction temp;
      in>>whole>>temp;
+     std::cout << whole << " " << temp << std::endl;
+     if(whole < 0)
+     {
+         temp *= -1;
+
+     }
      if(in.fail())
      {
+         std::cout << "Infail" << std::endl;
          m = whole;
          in.clear();
      }

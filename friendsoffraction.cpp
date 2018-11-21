@@ -29,7 +29,6 @@ std::istream& operator>>(std::istream& in, fraction &frac)
     {        
         // Negative check, this will allow us to change the possibleFraction into its negative counterpart.
         bool neg = false;
-        std::cout << "Peek: "<< in.peek() << std::endl;
         if (in.peek() == '-')
         {
             in >> junk;
@@ -48,7 +47,7 @@ std::istream& operator>>(std::istream& in, fraction &frac)
                     throw DivByZero;
                 frac.reduce();
             }
-            else if (in.peek() == '.') // Example "0.5"
+            if (in.peek() == '.') // Example "0.5"
             {
                 double temp;
                 in >> temp;
