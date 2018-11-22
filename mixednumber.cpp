@@ -83,7 +83,7 @@ void mixedNumber::nukeEveryone()
     denom = 1;
 }
 
- std::ostream& operator<<( std::ostream &out, const mixedNumber &m)
+std::ostream& operator<<( std::ostream &out, const mixedNumber &m)
 {
      int whole = m.num/m.denom, numerator = m.num % m.denom;
      if(numerator == 0)
@@ -96,43 +96,23 @@ void mixedNumber::nukeEveryone()
      return out;
 }
 
- std::istream& operator>>( std::istream &in, mixedNumber &m)
+std::istream& operator>>( std::istream &in, mixedNumber &m)
 {
-     char junk;
-     int whole, temp2;
-     fraction temp, wholeFrac;
+     fraction temp_whole, temp_mixed;
 
-     if(!(in>>whole))
-         throw Invalid_Type;
+     if (in >> temp_whole)
+         if (in.peek() == ' ')
+            in >> temp_mixed;
 
-     if (in.peek() == ' ')
-         in >>temp;
-     else if(in.peek() == '/')
-     {
-         in >> junk;
-         if(!(in>>temp2))
-             throw Invalid_Type;
-         temp.setValue(whole,temp2);
-         whole = 0;
-     }
-     else if(in.peek() == '.')
-     {
-         in >> temp;
-
-     }
-
-     if(whole < 0)
-     {
-         temp *= -1;
-     }
+     if(temp_whole < 0)
+         temp_mixed *= -1;
 
      if(in.fail())
      {
-         std::cout << "Infail" << std::endl;
-         m = whole;
+         m = temp_whole;
          in.clear();
      }
      else
-         m = (temp += whole);
+         m = (temp_whole += temp_mixed);
      return in;
 }

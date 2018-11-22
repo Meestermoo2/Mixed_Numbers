@@ -35,46 +35,50 @@ std::istream& operator>>(std::istream& in, fraction &frac)
             neg = true;
         }
 
-        // Input the possiblefraction as an integer, if possible
-        if(in>>frac.num)
+        if (in.peek() == '.') // Example ".5"
         {
+            double temp;
+            if (!(in >> temp))
+                throw Invalid_Type;
+
+            temp = temp + frac.num;
+
+            if (neg)
+                temp *= -1;
+
+            fraction a(temp);
+            frac = a;
+            frac.reduce();
+        } else if (!(in>>frac.num))
+            throw Invalid_Type;
+        else{
             if(in.peek() == '/')
             {
                 if (neg)
                     frac.num *= -1;
-                in >> junk >> frac.denom;
+                in >> junk;
+                if (!(in>>frac.denom))
+                    throw Invalid_Type;
                 if(frac.denom == 0)
                     throw DivByZero;
                 frac.reduce();
-            }
-            if (in.peek() == '.') // Example "0.5"
+            } else if (in.peek() == '.') // Example "0.5"
             {
                 double temp;
-                in >> temp;
-                temp = temp + frac.num;
-                if (neg)
-                    temp *= -1;
-                fraction a(temp);
-                frac = a;
-                frac.reduce();
+                if (!(in >> temp))
+                    throw Invalid_Type;
 
-            }
-        }
-        // If possible fraction can't be put into integer, it is likely a decimal
-        else  // Example ".5"
-        {
-            in.clear();
-            if ((in.peek() == '.'))
-            {
-                double temp;
-                in >> temp;
+                temp = temp + frac.num;
+
                 if (neg)
                     temp *= -1;
+
                 fraction a(temp);
                 frac = a;
                 frac.reduce();
             }
         }
+
 
     }
     return in;
