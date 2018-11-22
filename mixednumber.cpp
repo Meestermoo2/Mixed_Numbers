@@ -98,15 +98,34 @@ void mixedNumber::nukeEveryone()
 
  std::istream& operator>>( std::istream &in, mixedNumber &m)
 {
-     int whole;
-     fraction temp;
-     in>>whole>>temp;
-     std::cout << whole << " " << temp << std::endl;
+     char junk;
+     int whole, temp2;
+     fraction temp, wholeFrac;
+
+     if(!(in>>whole))
+         throw Invalid_Type;
+
+     if (in.peek() == ' ')
+         in >>temp;
+     else if(in.peek() == '/')
+     {
+         in >> junk;
+         if(!(in>>temp2))
+             throw Invalid_Type;
+         temp.setValue(whole,temp2);
+         whole = 0;
+     }
+     else if(in.peek() == '.')
+     {
+         in >> temp;
+
+     }
+
      if(whole < 0)
      {
          temp *= -1;
-
      }
+
      if(in.fail())
      {
          std::cout << "Infail" << std::endl;
