@@ -4,7 +4,8 @@
 - 0/0 causes a crash
 - initializing mixed number with negatives causes issues.
 - constructing a mixed number from a fraction;;
-
+- after catching error, should redirect back to prompt
+- 3.999/4
 Edge cases:
 double negatives? (1- -1)
 decimal over decimal (0.5/0.5)

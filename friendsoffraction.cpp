@@ -75,7 +75,6 @@ std::istream& operator>>(std::istream& in, fraction &frac)
                 frac.reduce();
             }
         }
-
     }
     return in;
 }
