@@ -49,17 +49,18 @@ std::istream& operator>>(std::istream& in, fraction &frac)
             fraction a(temp);
             frac = a;
             frac.reduce();
-        } else if (!(in>>frac.num))
+        }
+        else if (!(in>>frac.num))
             throw Invalid_Type;
         else{
-            if(in.peek() == '/')
+            if (in.peek() == '/')
             {
                 if (neg)
                     frac.num *= -1;
                 in >> junk;
                 if (!(in>>frac.denom))
                     throw Invalid_Type;
-                if(frac.denom == 0)
+                if (frac.denom == 0)
                     throw DivByZero;
                 frac.reduce();
             } else if (in.peek() == '.') // Example "0.5"
@@ -76,6 +77,10 @@ std::istream& operator>>(std::istream& in, fraction &frac)
                 fraction a(temp);
                 frac = a;
                 frac.reduce();
+            } else
+            { // This case allows us to take whole numbers (e.g. (5))
+                if (neg)
+                    frac.num *= -1;
             }
         }
     }
