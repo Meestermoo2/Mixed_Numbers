@@ -78,11 +78,6 @@ std::istream& operator>>(std::istream& in, fraction &frac)
                 frac.reduce();
             }
         }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> origin/E_Exceptions
     }
     return in;
 }
