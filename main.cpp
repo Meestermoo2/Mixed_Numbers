@@ -1,12 +1,69 @@
 #include <iostream>
 #include "mixednumber.h"
 #include "driverprogram.cpp"
+#include "superswitch.cpp"
 
 using namespace std;
 
 int main()
 {
-    driverProgram();
+//    driverProgram();
+    while (1)
+    {
+        try
+        {
+            while(1){
+                mixedNumber a(0),b(0);
+                char junk;
+                std:stringstream ss;
+
+                string temp;
+                cin >> temp;
+
+                ss << temp;
+                ss >> a;
+
+                if (!(ss >> junk))
+                    cout << "a = "<<a<<endl;
+                else{
+                    ss >> b;
+
+                    switch (junk)
+                    {
+                    case '+':
+                        cout << "a+b = " << a+b << endl;
+                        break;
+                    case '-':
+                        cout << "a-b = " << a-b << endl;
+                        break;
+                    case '*':
+                        cout << "a*b = " << a*b << endl;
+                        break;
+                    case '/':
+                        cout << "a/b = " << a/b << endl;
+                        break;
+                    default:
+                        cout << endl;
+                    }
+                }
+                ss.clear();
+            }
+        }
+        catch (fraction_ERRORS e) {
+               switch(e)
+               {
+                   case DivByZero :
+                       cout << "Division by zero" << endl;
+                       break;
+                   case Invalid_Type :
+                       cout << "Invalid type was entered" << endl;
+                       break;
+               }
+           }
+
+    }
+
+
     return 0;
 }
 
