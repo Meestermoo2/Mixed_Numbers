@@ -1,5 +1,6 @@
 #include "mixednumber.h"
 
+
 mixedNumber::mixedNumber()
 {
 }
@@ -66,6 +67,8 @@ void mixedNumber::getValues(int &w, int &n, int &d)
 
 void mixedNumber::setValues(int w, int n, int d)
 {
+    if (w < 0)
+        d *= -1;
     fraction::setValue(w*d + n, d);
 }
 
@@ -81,7 +84,7 @@ void mixedNumber::nukeEveryone()
     denom = 1;
 }
 
- std::ostream& operator<<( std::ostream &out, const mixedNumber &m)
+std::ostream& operator<<( std::ostream &out, const mixedNumber &m)
 {
      int whole = m.num/m.denom, numerator = m.num % m.denom;
      if(numerator == 0)
@@ -94,17 +97,31 @@ void mixedNumber::nukeEveryone()
      return out;
 }
 
- std::istream& operator>>( std::istream &in, mixedNumber &m)
+std::istream& operator>>( std::istream &in, mixedNumber &m)
 {
-     int whole;
-     fraction temp;
-     in>>whole>>temp;
+     fraction temp_whole, temp_mixed;
+
+     if (in >> temp_whole)
+     {
+         if (in.peek() == ' ')
+         {
+            in >> temp_mixed;
+            if (temp_mixed.getDenom() <= temp_mixed.getNum() || temp_mixed <= 0) // If fraction received contains non-fraction or negative number.
+                throw ImproperMixed;
+            if (temp_whole.getDenom() != 1) // If whole num is not a whole.. (e.g. 3/4 3/4)
+                throw ImproperMixed;
+         }
+     }
+
+     if(temp_whole < 0) // Negates mixed number
+         temp_mixed *= -1;
+
      if(in.fail())
      {
-         m = whole;
+         m=temp_whole;
          in.clear();
      }
      else
-         m = (temp += whole);
+         m = (temp_whole += temp_mixed);
      return in;
 }

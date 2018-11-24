@@ -6,57 +6,63 @@ using namespace std;
 
 bool driverProgram()
 {
-    try {
-        std::stringstream ss;
-        fraction a;
-        string temp;
+//    try {
+//        std::stringstream ss;
+//        string temp;
 
-        temp = "1/2";
-        ss << temp;
-        ss >> a;
-        cout << "Input: " << temp  << endl << "Output: "<< a << endl << endl;
 
-        ss.clear();
-        temp = "3/4";
-        ss << temp;
-        ss >> a;
-        cout << "Input: " << temp  << endl << "Output: "<< a << endl << endl;
+////        mixedNumber a(3,2,3), b(4.0), c;
+//    //    cout<<"a = "<<a<<" b = "<<b<<endl;
+//    //    c = a + b;
+//    //    cout<<"c = "<<c<<endl;
+////        cout<<"a = "<<a<<" b = "<<b<<" c = "<<c<<endl;
+////        a = -3.25;
+////        cout<<"a = "<<a<<" b = "<<b<<" c = "<<c<<endl;
+////        b = 4/5.;
+////        cout<<"a = "<<a<<" b = "<<b<<" c = "<<c<<endl;
+////        c = a + b;
+////        cout<<"aa = "<<a<<" b = "<<b<<" c = "<<c<<endl;
+////        cout << "We got to the end" << endl;
+////        return 0;
 
-        temp = "-.5";
-        ss.clear();
-        ss << temp;
-        ss >> a;
-        cout << "Input: " << temp  << endl << "Output: "<< a << endl << endl;
 
-        temp = "-4/5.0";
-        ss.clear();
-        ss << temp;
-        ss >> a;
-        cout << "Input: " << temp  << endl << "Output: "<< a << endl << endl;
+//        mixedNumber a;
+//>>>>>>> origin/E_Exceptions
+//        while(1)
+//        {
+//            cout << "Please Enter a mixed number: ";
+//            cin >> a;
+//            cout << "Please Enter a mixed number: ";
+//            cin >> b;
+//            cout << "You Entered the mixed number: " << a << " and " << b <<endl << endl;
 
-        temp = "5/0";
-        ss.clear();
-        ss << temp;
-        ss >> a;
-        cout << "Input: " << temp  << endl << "Output: "<< a << endl << endl;
+//            cout << "A+B = " << a+b << endl;
+//            cout << "A-B = " << a-b << endl;
+//            cout << "A*B = " << a*b << endl;
+//            cout << "A/B = " << a/b << endl;
+//            cout << "B+A = " << b+a << endl;
+//            cout << "B-A = " << b-a << endl;
+//            cout << "B*A = " << b*a << endl;
+//            cout << "B/A = " << b/a << endl;
+//        }
 
-        temp = "-2/3";
-        ss.clear();
-        ss << temp;
-        ss >> a;
-        cout << "Input: " << temp  << endl << "Output: "<< a << endl << endl;
-    } catch (fraction_ERRORS e) {
-        switch(e)
-        {
-            case DivByZero :
-                cout << "Division by zero" << endl;
-                break;
-        }
-    }
-    catch(...)
-    {
-        cout << "An unknown error occurred" << endl;
-    }
 
-    return 1;
+//    } catch (fraction_ERRORS e) {
+//        switch(e)
+//        {
+//            case DivByZero :
+//                cout << "Division by zero" << endl;
+//                break;
+//            case Invalid_Type :
+//                cout << "Invalid type was entered" << endl;
+//                break;
+//        }
+//    }
+//    catch(...)
+//    {
+//        cout << "An unknown error occurred" << endl;
+//    }
+//    cout << "Driver program has ended" << endl;
+
+//    return 1;
 }

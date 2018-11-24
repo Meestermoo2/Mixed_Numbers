@@ -60,7 +60,7 @@ fraction::fraction(const double &other)
 
 bool fraction::allDecimalsTheSame(const std::string &fracPart)
 {
-    if(fracPart.size() == 1) // This will account for single digit parts (e.g .1 is not repeating)
+    if(fracPart.size() < 3) // This will account for single digit parts (e.g .1 is not repeating)
                 return false;
 
     bool yes = true;
@@ -132,6 +132,8 @@ void fraction::setValue(int n, int d) //mutator function
 {
     num = n;
     denom = d;
+    if (!denom)
+        throw DivByZero;
     reduce();
 }
 
@@ -153,7 +155,6 @@ void fraction::getInput()
 
 void fraction::reduce()
 {
-    std::cout<<"num = "<<num<<" denom = "<<denom<<std::endl;
     bool neg = num < 0 || denom < 0,
          both = num < 0 && denom < 0;
     int divisor = gcd(abs(num), abs(denom));
@@ -162,7 +163,6 @@ void fraction::reduce()
     if(!both) //Asking is both == false
         if(neg)
             num *= -1;
-    std::cout<<"num = "<<num<<" denom = "<<denom<<std::endl;
 }
 
 int fraction::gcd(int p, int q)
