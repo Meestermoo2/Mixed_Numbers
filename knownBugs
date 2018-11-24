@@ -9,3 +9,11 @@
 Edge cases:
 double negatives? (1- -1)
 decimal over decimal (0.5/0.5)
+
+
+3/4 +3/4
+a = 1 1/2
+3/4+ 3/4
+a = 3/2
+
+temp mixed should not take in negative numbers.

@@ -1,7 +1,6 @@
 #include <iostream>
 #include "mixednumber.h"
 #include "driverprogram.cpp"
-#include "superswitch.cpp"
 
 using namespace std;
 
@@ -16,17 +15,21 @@ int main()
                 mixedNumber a(0),b(0);
                 char junk;
                 std:stringstream ss;
-
                 string temp;
-                cin >> temp;
+                getline(cin, temp);
 
                 ss << temp;
                 ss >> a;
+
+                cout << "a received as " << a << endl;
 
                 if (!(ss >> junk))
                     cout << "a = "<<a<<endl;
                 else{
                     ss >> b;
+
+                    cout << "b received as " << b << endl;
+
 
                     switch (junk)
                     {
@@ -50,17 +53,24 @@ int main()
             }
         }
         catch (fraction_ERRORS e) {
-               switch(e)
-               {
-                   case DivByZero :
-                       cout << "Division by zero" << endl;
-                       break;
-                   case Invalid_Type :
-                       cout << "Invalid type was entered" << endl;
-                       break;
-               }
+            switch(e)
+            {
+                case DivByZero :
+                    cout << "Division by zero" << endl;
+                    break;
+                case Invalid_Type :
+                    cout << "Invalid fraction was entered" << endl;
+                    break;
+            }
            }
-
+        catch (mixedNumber_ERRORS f) {
+            switch(f)
+            {
+                case ImproperMixed:
+                    cout << "Not a valid mixed number" << endl;
+                    break;
+            }
+        }
     }
 
 

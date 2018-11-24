@@ -4,6 +4,8 @@
 #include <fstream>
 #include "fraction.h"
 
+enum mixedNumber_ERRORS{ImproperMixed};
+
 class mixedNumber : public fraction
 {
     public:
