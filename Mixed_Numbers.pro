@@ -8,8 +8,7 @@ SOURCES += \
     fraction.cpp \
     friendsoffraction.cpp \
     mixednumber.cpp \
-    driverprogram.cpp \
-    superswitch.cpp
+    driverprogram.cpp
 
 HEADERS += \
     fraction.h \

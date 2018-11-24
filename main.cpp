@@ -12,9 +12,9 @@ int main()
         try
         {
             while(1){
-                mixedNumber a(0),b(0);
+                mixedNumber a(0),b(0),c(0);
                 char junk;
-                std:stringstream ss;
+                std::stringstream ss;
                 string temp;
                 getline(cin, temp);
 
@@ -26,23 +26,27 @@ int main()
                 if (!(ss >> junk))
                     cout << "a = "<<a<<endl;
                 else{
+
                     ss >> b;
 
                     cout << "b received as " << b << endl;
 
-
                     switch (junk)
                     {
                     case '+':
-                        cout << "a+b = " << a+b << endl;
+                        c = a+b;
+                        cout << "a+b = " << c << endl;
                         break;
                     case '-':
+                        c = a-b;
                         cout << "a-b = " << a-b << endl;
                         break;
                     case '*':
+                        c = a*b;
                         cout << "a*b = " << a*b << endl;
                         break;
                     case '/':
+                        c = a/b;
                         cout << "a/b = " << a/b << endl;
                         break;
                     default:
@@ -72,7 +76,6 @@ int main()
             }
         }
     }
-
 
     return 0;
 }

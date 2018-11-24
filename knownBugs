@@ -1,11 +1,8 @@
 - Cannot take cin of -4/5.0
 - Cannot take cin of -2/.2
 - Needs exception for any cin of zero (e.g 5/0)
-- 0/0 causes a crash
 - initializing mixed number with negatives causes issues.
 - constructing a mixed number from a fraction;;
-- after catching error, should redirect back to prompt
-- 3.999/4
 Edge cases:
 double negatives? (1- -1)
 decimal over decimal (0.5/0.5)
@@ -16,4 +13,5 @@ a = 1 1/2
 3/4+ 3/4
 a = 3/2
 
-temp mixed should not take in negative numbers.
+
+5/2.3
